@@ -133,6 +133,7 @@
 		63367AE816C08E6300D66390 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63367AE716C08E6300D66390 /* AppDelegate.m */; };
 		63367AEB16C08E6300D66390 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63367AEA16C08E6300D66390 /* HelloWorldLayer.m */; };
 		63367AEE16C08E6300D66390 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63367AED16C08E6300D66390 /* IntroLayer.m */; };
+		63367AF516C0C38E00D66390 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63367AF416C0C38E00D66390 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -398,6 +399,7 @@
 		63367AEA16C08E6300D66390 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		63367AEC16C08E6300D66390 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		63367AED16C08E6300D66390 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		63367AF416C0C38E00D66390 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +425,7 @@
 		6336795016C08E6200D66390 = {
 			isa = PBXGroup;
 			children = (
+				63367AF416C0C38E00D66390 /* Default-568h@2x.png */,
 				6336796E16C08E6200D66390 /* blockGame */,
 				6336795B16C08E6200D66390 /* Frameworks */,
 				6336795A16C08E6200D66390 /* Products */,
@@ -895,6 +898,7 @@
 				6336798516C08E6200D66390 /* Icon@2x.png in Resources */,
 				6336798816C08E6200D66390 /* iTunesArtwork in Resources */,
 				63367AC616C08E6300D66390 /* ChangeLog in Resources */,
+				63367AF516C0C38E00D66390 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1116,7 @@
 				63367AF316C08E6300D66390 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -12,7 +12,6 @@
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
-#import "math.h"
 
 #pragma mark - HelloWorldLayer
 
@@ -107,17 +106,4 @@ int arr[4][2] = {
 	[super dealloc];
 }
 
-#pragma mark GameKit delegate
-
--(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
-{
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}
-
--(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-{
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}
 @end
