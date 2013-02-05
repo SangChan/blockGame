@@ -8,9 +8,9 @@
 
 
 #import <GameKit/GameKit.h>
-
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
+#import "tetromino.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
@@ -18,8 +18,11 @@
     CCMenuItem *_leftKey;
     CCMenuItem *_rightKey;
     CCMenuItem *_rotateKey;
-    CCNode *_block;
+    tetromino *_block;
+    int map[map_height][map_width];
 }
+
+
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

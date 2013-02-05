@@ -40,24 +40,27 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
-		_leftKey = [CCMenuItemImage itemWithNormalImage:@"r1.png" selectedImage:@"r2.png" target:self selector:@selector(leftKeyPressed:)];
-        [_leftKey setPosition:ccp(50,50)];
+		[self initBackGround];
+        
+        _leftKey = [CCMenuItemImage itemWithNormalImage:@"r1.png" selectedImage:@"r2.png" target:self selector:@selector(leftKeyPressed:)];
+        [_leftKey setPosition:ccp(50,25)];
         CCMenu *leftKeyMenu = [CCMenu menuWithItems:_leftKey, nil];
         leftKeyMenu.position = CGPointZero;
         [self addChild:leftKeyMenu];
         
         _rightKey = [CCMenuItemImage itemWithNormalImage:@"r1.png" selectedImage:@"r2.png" target:self selector:@selector(rightKeyPressed:)];
-        [_rightKey setPosition:ccp(270,50)];
+        [_rightKey setPosition:ccp(270,25)];
         CCMenu *rightKeyMenu = [CCMenu menuWithItems:_rightKey, nil];
         rightKeyMenu.position = CGPointZero;
         [self addChild:rightKeyMenu];
         
         _rotateKey = [CCMenuItemImage itemWithNormalImage:@"r1.png" selectedImage:@"r2.png" target:self selector:@selector(rotateKeyPressed:)];
-        [_rotateKey setPosition:ccp(160,50)];
+        [_rotateKey setPosition:ccp(160,25)];
         CCMenu *rotateKeyMenu = [CCMenu menuWithItems:_rotateKey, nil];
         rotateKeyMenu.position = CGPointZero;
         [self addChild:rotateKeyMenu];
-
+        
+        
         [self initBlock];
         
         [self schedule:@selector(drawBlock:) interval:1/60];
@@ -68,53 +71,36 @@
 
 - (void)leftKeyPressed:(id)sender {
     NSLog(@"left!");
-    for (int i=0; i < 4; i++) {
-        arr[i][0]--;
-    }
+    [_block move:mv_left];
+
 }
 
 - (void)rightKeyPressed:(id)sender {
     NSLog(@"right!");
-    for (int i=0; i < 4; i++) {
-        arr[i][0]++;
-    }
+    [_block move:mv_right];
 }
 
 - (void)rotateKeyPressed:(id)sender {
     NSLog(@"rotate!");
-    for (int i=0; i < 4; i++) {
-        CGPoint result = [self rotateX:(CGFloat)arr[i][0] Y:(CGFloat)arr[i][1] degree:M_PI/2];
-        arr[i][0] = (int)result.x;
-        arr[i][1] = (int)result.y;
-    }
+    [_block rotate];
 }
 
-int arr[4][2] = {
-// ㄴ
-    {0,1},
-    {0,0},
-    {1,0},
-    {2,0}
-};
+-(void) initBackGround {
+    // ask director for the window size
+	CGSize size = [[CCDirector sharedDirector] winSize];
+    
+    CCSprite *bg = [self blankSpriteWithSize:CGSizeMake(block_size*map_width, block_size*map_height)];
+    [bg setColor:ccc3(255, 255, 255)];
+    [bg setPosition:ccp(size.width/2, size.height/2+border_y)];
+    [self addChild:bg z:-1];
+}
 
 - (void) initBlock {
-    _block = [CCNode node];
-    for (int i=0; i < 4; i++) {
-        CCSprite *block = [self blankSpriteWithSize:CGSizeMake(50, 50)];
-        [block setColor:ccc3(100, i*20, i*20)];
-        [block setPosition:ccp(160+(50*arr[i][0]), 240+(50*arr[i][1]))];
-        [_block addChild:block z:i];
-    }
+    _block = [[tetromino alloc]initTetrimino:0];
     [self addChild:_block];
 }
 
 - (void) drawBlock:(ccTime)dt {
-    for (int i=0; i < 4; i++) {
-        //CGPoint result = [self rotateX:(CGFloat)arr[i][0] Y:(CGFloat)arr[i][1] degree:M_PI/2];
-        //arr[i][0] = (int)result.x;
-        //arr[i][1] = (int)result.y;
-        [[[_block children]objectAtIndex:i]setPosition:ccp(160+(50*arr[i][0]), 240+(50*arr[i][1]))];
-    }
 }
 
 - (CCSprite*)blankSpriteWithSize:(CGSize)size
@@ -125,17 +111,11 @@ int arr[4][2] = {
     CCTexture2D *tex = [[CCTexture2D alloc] initWithData:buffer pixelFormat:kCCTexture2DPixelFormat_RGB5A1 pixelsWide:1 pixelsHigh:1 contentSize:size];
     [sprite setTexture:tex];
     [sprite setTextureRect:CGRectMake(0, 0, size.width, size.height)];
+    //[sprite setAnchorPoint:CGPointZero];
     free(buffer);
     return sprite;
 }
 
-- (CGPoint)rotateX:(CGFloat)x Y:(CGFloat)y degree:(CGFloat)degree {
-    CGFloat newX, newY;
-    newX = x*cos(degree) +  y*sin(degree);
-    newY = x*sin(degree)*(-1) + y*cos(degree);
-    NSLog(@"%i , %i", (int)newX , (int)newY );
-    return CGPointMake(newX, newY);
-}
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
