@@ -63,7 +63,7 @@
         
         [self initBlock];
         
-        [self schedule:@selector(drawBlock:) interval:1/60];
+        [self schedule:@selector(drawBlock:) interval:1];
         
 	}
 	return self;
@@ -101,6 +101,7 @@
 }
 
 - (void) drawBlock:(ccTime)dt {
+    [_block falling];
 }
 
 - (CCSprite*)blankSpriteWithSize:(CGSize)size

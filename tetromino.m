@@ -14,7 +14,7 @@
 -(id) initTetrimino : (int)type {
     if (self == [super init]) {
         _x = 8;
-        _y = 15;
+        _y = 22;
         memcpy(_map, z_type, sizeof(_map));
         for (int i=0; i < 4; i++) {
             CCSprite *block = [self blankSpriteWithSize:CGSizeMake(block_size, block_size)];
@@ -31,6 +31,9 @@
         CGPoint result = [self rotateX:(CGFloat)_map[i][0] Y:(CGFloat)_map[i][1] degree:M_PI/2];
         _map[i][0] = (int)result.x;
         _map[i][1] = (int)result.y;
+    }
+    
+    for (int i=0; i < 4; i++) {
         [[[self children]objectAtIndex:i]setPosition:ccp((_x+_map[i][0])*block_size, (_y+_map[i][1])*block_size)];
     }
     return YES;
@@ -51,6 +54,12 @@
 }
 
 -(BOOL)falling{
+    if (_y > 4) {
+        _y--;
+    }
+    for (int i=0; i < 4; i++) {
+        [[[self children]objectAtIndex:i]setPosition:ccp((_x+_map[i][0])*block_size, (_y+_map[i][1])*block_size)];
+    }
     return YES;
 }
 

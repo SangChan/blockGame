@@ -22,7 +22,7 @@
 #define map_height 20
 
 #define border_x 10
-#define border_y 20
+#define border_y 30
 
 #define mv_left -1
 #define mv_right 1
