@@ -15,6 +15,10 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
+    CCMenuItem *_leftKey;
+    CCMenuItem *_rightKey;
+    CCMenuItem *_rotateKey;
+    CCNode *_block;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

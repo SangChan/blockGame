@@ -134,6 +134,8 @@
 		63367AEB16C08E6300D66390 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63367AEA16C08E6300D66390 /* HelloWorldLayer.m */; };
 		63367AEE16C08E6300D66390 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63367AED16C08E6300D66390 /* IntroLayer.m */; };
 		63367AF516C0C38E00D66390 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63367AF416C0C38E00D66390 /* Default-568h@2x.png */; };
+		636D477B16C1076700E1C8E8 /* r1.png in Resources */ = {isa = PBXBuildFile; fileRef = 636D477916C1076700E1C8E8 /* r1.png */; };
+		636D477C16C1076700E1C8E8 /* r2.png in Resources */ = {isa = PBXBuildFile; fileRef = 636D477A16C1076700E1C8E8 /* r2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -400,6 +402,8 @@
 		63367AEC16C08E6300D66390 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		63367AED16C08E6300D66390 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		63367AF416C0C38E00D66390 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		636D477916C1076700E1C8E8 /* r1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r1.png; sourceTree = "<group>"; };
+		636D477A16C1076700E1C8E8 /* r2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,6 +479,8 @@
 		6336796F16C08E6200D66390 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				636D477916C1076700E1C8E8 /* r1.png */,
+				636D477A16C1076700E1C8E8 /* r2.png */,
 				6336797016C08E6200D66390 /* Default.png */,
 				6336797216C08E6200D66390 /* Default-Landscape~ipad.png */,
 				6336797416C08E6200D66390 /* fps_images.png */,
@@ -899,6 +905,8 @@
 				6336798816C08E6200D66390 /* iTunesArtwork in Resources */,
 				63367AC616C08E6300D66390 /* ChangeLog in Resources */,
 				63367AF516C0C38E00D66390 /* Default-568h@2x.png in Resources */,
+				636D477B16C1076700E1C8E8 /* r1.png in Resources */,
+				636D477C16C1076700E1C8E8 /* r2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

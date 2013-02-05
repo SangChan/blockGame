@@ -40,13 +40,53 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
-		
+		_leftKey = [CCMenuItemImage itemWithNormalImage:@"r1.png" selectedImage:@"r2.png" target:self selector:@selector(leftKeyPressed:)];
+        [_leftKey setPosition:ccp(50,50)];
+        CCMenu *leftKeyMenu = [CCMenu menuWithItems:_leftKey, nil];
+        leftKeyMenu.position = CGPointZero;
+        [self addChild:leftKeyMenu];
+        
+        _rightKey = [CCMenuItemImage itemWithNormalImage:@"r1.png" selectedImage:@"r2.png" target:self selector:@selector(rightKeyPressed:)];
+        [_rightKey setPosition:ccp(270,50)];
+        CCMenu *rightKeyMenu = [CCMenu menuWithItems:_rightKey, nil];
+        rightKeyMenu.position = CGPointZero;
+        [self addChild:rightKeyMenu];
+        
+        _rotateKey = [CCMenuItemImage itemWithNormalImage:@"r1.png" selectedImage:@"r2.png" target:self selector:@selector(rotateKeyPressed:)];
+        [_rotateKey setPosition:ccp(160,50)];
+        CCMenu *rotateKeyMenu = [CCMenu menuWithItems:_rotateKey, nil];
+        rotateKeyMenu.position = CGPointZero;
+        [self addChild:rotateKeyMenu];
+
         [self initBlock];
         
-        [self schedule:@selector(rotateBlock:) interval:1];
+        [self schedule:@selector(drawBlock:) interval:1/60];
         
 	}
 	return self;
+}
+
+- (void)leftKeyPressed:(id)sender {
+    NSLog(@"left!");
+    for (int i=0; i < 4; i++) {
+        arr[i][0]--;
+    }
+}
+
+- (void)rightKeyPressed:(id)sender {
+    NSLog(@"right!");
+    for (int i=0; i < 4; i++) {
+        arr[i][0]++;
+    }
+}
+
+- (void)rotateKeyPressed:(id)sender {
+    NSLog(@"rotate!");
+    for (int i=0; i < 4; i++) {
+        CGPoint result = [self rotateX:(CGFloat)arr[i][0] Y:(CGFloat)arr[i][1] degree:M_PI/2];
+        arr[i][0] = (int)result.x;
+        arr[i][1] = (int)result.y;
+    }
 }
 
 int arr[4][2] = {
@@ -58,20 +98,22 @@ int arr[4][2] = {
 };
 
 - (void) initBlock {
+    _block = [CCNode node];
     for (int i=0; i < 4; i++) {
         CCSprite *block = [self blankSpriteWithSize:CGSizeMake(50, 50)];
         [block setColor:ccc3(100, i*20, i*20)];
-        [block setPosition:ccp(240+(50*arr[i][0]), 160+(50*arr[i][1]))];
-        [self addChild:block z:i];
+        [block setPosition:ccp(160+(50*arr[i][0]), 240+(50*arr[i][1]))];
+        [_block addChild:block z:i];
     }
+    [self addChild:_block];
 }
 
-- (void) rotateBlock:(ccTime)dt {
+- (void) drawBlock:(ccTime)dt {
     for (int i=0; i < 4; i++) {
-        CGPoint result = [self rotateX:(CGFloat)arr[i][0] Y:(CGFloat)arr[i][1] degree:M_PI/2];
-        arr[i][0] = (int)result.x;
-        arr[i][1] = (int)result.y;
-        [[[self children]objectAtIndex:i] setPosition:ccp(240+(50*arr[i][0]), 160+(50*arr[i][1]))];
+        //CGPoint result = [self rotateX:(CGFloat)arr[i][0] Y:(CGFloat)arr[i][1] degree:M_PI/2];
+        //arr[i][0] = (int)result.x;
+        //arr[i][1] = (int)result.y;
+        [[[_block children]objectAtIndex:i]setPosition:ccp(160+(50*arr[i][0]), 240+(50*arr[i][1]))];
     }
 }
 
