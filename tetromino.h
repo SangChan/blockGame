@@ -89,5 +89,6 @@ static int z_type[4][2] = {
 -(BOOL)rotate;
 -(BOOL)move:(int)direction;
 -(BOOL)falling;
+-(void)draw;
 
 @end

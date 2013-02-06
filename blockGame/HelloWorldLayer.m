@@ -101,6 +101,7 @@
 }
 
 - (void) drawBlock:(ccTime)dt {
+    //[_block draw];
     [_block falling];
 }
 

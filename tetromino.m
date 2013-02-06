@@ -25,17 +25,20 @@
     }
     return self;
 }
+-(void)draw {
+    for (int i=0; i < 4; i++) {
+        [[[self children]objectAtIndex:i]setPosition:ccp((_x+_map[i][0])*block_size, (_y+_map[i][1])*block_size)];
+    }
+}
 
 -(BOOL)rotate {
     for (int i=0; i < 4; i++) {
         CGPoint result = [self rotateX:(CGFloat)_map[i][0] Y:(CGFloat)_map[i][1] degree:M_PI/2];
-        _map[i][0] = (int)result.x;
-        _map[i][1] = (int)result.y;
+        _map[i][0] = (int)roundf(result.x);
+        _map[i][1] = (int)roundf(result.y);
     }
     
-    for (int i=0; i < 4; i++) {
-        [[[self children]objectAtIndex:i]setPosition:ccp((_x+_map[i][0])*block_size, (_y+_map[i][1])*block_size)];
-    }
+    
     return YES;
 }
 
@@ -47,18 +50,12 @@
         _x++;
     }
     
-    for (int i=0; i < 4; i++) {
-        [[[self children]objectAtIndex:i]setPosition:ccp((_x+_map[i][0])*block_size, (_y+_map[i][1])*block_size)];
-    }
     return YES;
 }
 
 -(BOOL)falling{
     if (_y > 4) {
         _y--;
-    }
-    for (int i=0; i < 4; i++) {
-        [[[self children]objectAtIndex:i]setPosition:ccp((_x+_map[i][0])*block_size, (_y+_map[i][1])*block_size)];
     }
     return YES;
 }
@@ -72,17 +69,16 @@
     CCTexture2D *tex = [[CCTexture2D alloc] initWithData:buffer pixelFormat:kCCTexture2DPixelFormat_RGB5A1 pixelsWide:1 pixelsHigh:1 contentSize:size];
     [sprite setTexture:tex];
     [sprite setTextureRect:CGRectMake(0, 0, size.width, size.height)];
-    //[sprite setAnchorPoint:CGPointZero];
     free(buffer);
     return sprite;
 }
 
 
 - (CGPoint)rotateX:(CGFloat)x Y:(CGFloat)y degree:(CGFloat)degree {
-    CGFloat newX, newY;
+    float newX, newY;
     newX = x*cos(degree) +  y*sin(degree);
     newY = x*sin(degree)*(-1) + y*cos(degree);
-    NSLog(@"%i , %i", (int)newX , (int)newY );
+    NSLog(@"%f to %f(%i) || %f to %f(%i)",x,newX,(int)roundf(newX), y, newY, (int)roundf(newY));
     return CGPointMake(newX, newY);
 }
 
